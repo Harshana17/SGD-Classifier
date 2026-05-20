@@ -28,6 +28,8 @@ from sklearn.datasets import load_iris
 from sklearn.linear_model import SGDClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score,confusion_matrix
+import matplotlib.pyplot as plt
+import seaborn as sns
 iris=load_iris()
 df=pd.DataFrame(data=iris.data,columns=iris.feature_names)
 df['target']=iris.target
@@ -42,10 +44,19 @@ accuracy=accuracy_score(y_test,y_pred)
 print(f"Acuuracy:{accuracy:.3f}")
 cm=confusion_matrix(y_test,y_pred)
 print("Confusion Matrix:")
-print(cm)  
+print(cm)
+plt.figure(figsize=(6,4))
+sns.heatmap(cm, annot=True, cmap="Blues", fmt='d', xticklabels=iris.target_names, yticklabels=iris.target_names)
+plt.xlabel("Predicted Label")
+plt.ylabel("True Label")
+plt.title("Confusion Matrix")
+plt.show() 
+
 ```
 ## Output:
-<img width="1261" height="575" alt="image" src="https://github.com/user-attachments/assets/0d1f6385-b874-485e-b093-88f1c2853d79" />
+
+<img width="886" height="365" alt="image" src="https://github.com/user-attachments/assets/2eaec749-6d5f-446a-aca5-bf9912f9decc" />
+<img width="753" height="573" alt="image" src="https://github.com/user-attachments/assets/e0994fcc-cd3b-4c27-aae5-f240de2eab12" />
 
 
 
